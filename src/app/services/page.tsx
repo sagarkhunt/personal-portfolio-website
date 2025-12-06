@@ -1,142 +1,166 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function ServicesPage() {
   return (
-    <main className="bg-slate-950 text-slate-50">
-      <section className="border-b border-slate-800/80 bg-slate-950">
-        <div className="mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-16">
-          <h1 className="text-2xl font-semibold md:text-3xl">Services</h1>
-          <p className="mt-3 max-w-2xl text-sm text-slate-300 md:text-base">
+    <main className="relative bg-[var(--background)] text-[var(--text)] overflow-hidden">
+
+      {/* Floating blur shapes */}
+      <div className="pointer-events-none absolute -top-20 right-0 h-72 w-72 rounded-full bg-[var(--primary)]/20 blur-3xl" />
+      <div className="pointer-events-none absolute top-1/2 -left-20 h-80 w-80 rounded-full bg-[var(--accent)]/20 blur-3xl" />
+
+      {/* Top Section */}
+      <section className="relative border-b border-[var(--border)] py-20">
+        <div className="mx-auto max-w-6xl px-6">
+
+          {/* Title */}
+          <motion.h1
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl font-extrabold text-[var(--heading)]"
+          >
+            Our
+            <span className="block bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] bg-clip-text text-transparent">
+              Services
+            </span>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mt-4 max-w-2xl text-lg text-[var(--subtext)]"
+          >
             Custom web, mobile, and API solutions engineered with clean
-            architecture, secure foundations, and a focus on long-term
-            maintainability.
-          </p>
+            architecture, secure foundations, and long-term maintainability.
+          </motion.p>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            {/* Web App Development */}
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-              <h2 className="text-lg font-semibold text-slate-50">
-                Web App Development
-              </h2>
-              <p className="mt-2 text-sm text-slate-300">
-                Modern, business-focused web applications tailored to your
-                workflows.
-              </p>
-              <ul className="mt-4 space-y-1.5 text-sm text-slate-200">
-                <li>ERP, CRM, dashboards</li>
-                <li>SaaS applications and multi-tenant platforms</li>
-              </ul>
-            </div>
+          {/* Services Grid */}
+          <div className="mt-14 grid gap-10 md:grid-cols-2">
 
-            {/* Mobile App Development */}
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-              <h2 className="text-lg font-semibold text-slate-50">
-                Mobile App Development
-              </h2>
-              <p className="mt-2 text-sm text-slate-300">
-                Cross-platform mobile apps with a single, maintainable codebase,
-                shipped to both iOS and Android app stores.
-              </p>
-              <ul className="mt-4 space-y-1.5 text-sm text-slate-200">
-                <li>Flutter for beautiful, fast iOS &amp; Android apps</li>
-                <li>Native integrations with Kotlin/Android and Swift/iOS</li>
-                <li>Secure authentication and session handling</li>
-              </ul>
-            </div>
+            {[
+              {
+                title: "Web App Development",
+                desc: "Modern business-focused web applications tailored to your workflows.",
+                list: [
+                  "ERP, CRM, dashboards",
+                  "SaaS applications & multi-tenant platforms",
+                ],
+              },
+              {
+                title: "Mobile App Development",
+                desc: "High-performance cross-platform apps built with a single codebase.",
+                list: [
+                  "Flutter apps for iOS & Android",
+                  "Native integrations (Swift / Kotlin)",
+                  "Secure login & session handling",
+                ],
+              },
+              {
+                title: "API Development",
+                desc: "APIs that are scalable, secure, and easy to integrate.",
+                list: ["REST & GraphQL APIs", "JWT / OAuth authentication"],
+              },
+              {
+                title: "Custom Backend",
+                desc: "High-performance, scalable backend systems.",
+                list: [
+                  "Laravel (RDBMS architecture)",
+                  "Node/Express microservices",
+                  "Queues, background jobs, WebSockets",
+                ],
+              },
+              {
+                title: "UI / Frontend Engineering",
+                desc: "Beautiful, reusable component-driven interfaces.",
+                list: [
+                  "Component-driven UI architecture",
+                  "SPA & SSR experiences",
+                  "Responsive design for all sizes",
+                ],
+              },
+              {
+                title: "Cloud & DevOps",
+                desc: "Infrastructure and pipelines designed for uptime and reliability.",
+                list: [
+                  "CI/CD pipelines",
+                  "Dockerized services",
+                  "Server & application hardening",
+                ],
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+                className="rounded-2xl border border-[var(--border)] bg-[var(--card-background)] p-7 shadow-sm hover:shadow-xl transition-all"
+              >
+                <h2 className="text-xl font-bold bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] bg-clip-text text-transparent">
+                  {item.title}
+                </h2>
 
-            {/* API Development */}
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-              <h2 className="text-lg font-semibold text-slate-50">
-                API Development
-              </h2>
-              <p className="mt-2 text-sm text-slate-300">
-                Reliable APIs that are easy to consume, secure, and version.
-              </p>
-              <ul className="mt-4 space-y-1.5 text-sm text-slate-200">
-                <li>REST / GraphQL interfaces</li>
-                <li>Token-based authentication (JWT, OAuth)</li>
-              </ul>
-            </div>
+                <p className="mt-3 text-[var(--text)]">{item.desc}</p>
 
-            {/* Custom Backend */}
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-              <h2 className="text-lg font-semibold text-slate-50">
-                Custom Backend
-              </h2>
-              <p className="mt-2 text-sm text-slate-300">
-                Backends built for performance, scalability, and clarity.
-              </p>
-              <ul className="mt-4 space-y-1.5 text-sm text-slate-200">
-                <li>Laravel with relational databases (RDBMS)</li>
-                <li>Node/Express APIs and microservices</li>
-                <li>Queues, background jobs, and WebSockets</li>
-              </ul>
-            </div>
+                <ul className="mt-4 space-y-1.5 text-sm text-[var(--subtext)]">
+                  {item.list.map((line) => (
+                    <motion.li key={line} whileHover={{ x: 6 }}>
+                      • {line}
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
 
-            {/* UI / Frontend */}
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-              <h2 className="text-lg font-semibold text-slate-50">
-                UI / Frontend Engineering
-              </h2>
-              <p className="mt-2 text-sm text-slate-300">
-                Component-driven UIs that are fast, reusable, and responsive.
-              </p>
-              <ul className="mt-4 space-y-1.5 text-sm text-slate-200">
-                <li>Component-based UI architecture</li>
-                <li>SPA &amp; SSR experiences</li>
-                <li>Responsive design for all screen sizes</li>
-              </ul>
-            </div>
-
-            {/* Cloud & DevOps */}
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-              <h2 className="text-lg font-semibold text-slate-50">
-                Cloud &amp; DevOps
-              </h2>
-              <p className="mt-2 text-sm text-slate-300">
-                Deployment pipelines and infrastructure designed for reliability.
-              </p>
-              <ul className="mt-4 space-y-1.5 text-sm text-slate-200">
-                <li>CI/CD pipelines</li>
-                <li>Dockerized services</li>
-                <li>Server and application security hardening</li>
-              </ul>
-            </div>
           </div>
 
-          {/* Page-specific features: Services */}
-          <div className="mt-12 rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-indigo-300">
-              How We Present Services
+          {/* Additional Info */}
+          <motion.div
+            initial={{ opacity: 0, y: 35 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="mt-20 rounded-2xl border border-[var(--border)] bg-[var(--background)] p-7 shadow-md"
+          >
+            <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+              HOW WE PRESENT SERVICES
             </h2>
-            <div className="mt-4 grid gap-6 md:grid-cols-3">
-              <div>
-                <h3 className="text-sm font-semibold text-slate-100">
-                  Pricing Cards
-                </h3>
-                <p className="mt-2 text-xs text-slate-300">
-                  Clear breakdown of engagement models or packages.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold text-slate-100">FAQ</h3>
-                <p className="mt-2 text-xs text-slate-300">
-                  Address common questions about process, timelines, and cost.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold text-slate-100">
-                  Work Cycle
-                </h3>
-                <p className="mt-2 text-xs text-slate-300">
-                  Visual explanation of discovery, design, build, launch, and
-                  support.
-                </p>
-              </div>
+
+            <div className="mt-8 grid gap-8 md:grid-cols-3">
+              {[
+                {
+                  title: "Pricing Cards",
+                  desc: "Clear breakdown of engagement models or project estimates.",
+                },
+                {
+                  title: "FAQ",
+                  desc: "Answers to common questions about process, cost, and timelines.",
+                },
+                {
+                  title: "Work Cycle",
+                  desc: "Discovery → Architecture → Development → Launch → Support.",
+                },
+              ].map((item) => (
+                <motion.div
+                  key={item.title}
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 200 }}
+                >
+                  <h3 className="text-md font-semibold text-[var(--heading)]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-[var(--subtext)]">{item.desc}</p>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          </motion.div>
+
         </div>
       </section>
     </main>
   );
 }
-
-
